@@ -31,9 +31,13 @@ def edit_category(request, category_id):
     if request.method == "POST":
         form = CategoryForm(request.POST, instance=category)
         if form.is_valid():
-            category = form.save(commit=False)
-            category.save()
-            return redirect('category_detail', category_id=category.id)
+            try:
+                category = form.save(commit=False)
+                category.save()
+                return redirect('category_detail', category_id=category.id)
+            except:
+                error_message = 'Something went wrong.'
+                return render(request, 'categories_and_posts/category_form.html', {'form': form, 'type_of_request': 'Edit', 'error_message': error_message})
     else:
         form = CategoryForm(instance=category)
     return render(request, 'categories_and_posts/category_form.html', {'form': form, 'type_of_request': 'Edit'})
@@ -41,8 +45,12 @@ def edit_category(request, category_id):
 def delete_category(request, category_id):
     category = get_category(category_id)  
     if request.method == "POST":
-        category.delete()
-        return redirect(reverse('category_list'))
+        try:
+            category.delete()
+            return redirect(reverse('category_list'))
+        except:
+            error_message = 'Something went wrong.'
+            return render(request, 'categories_and_posts/category_delete.html', {'name': category.title, 'error_message': error_message})
     if request.method == "GET":
         return render(request, 'categories_and_posts/category_delete.html', {'name': category.title})
 
@@ -77,9 +85,13 @@ def edit_post(request, category_id, post_id):
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.save()
-            return redirect('post_detail', post_id=post.id, category_id=category.id)
+            try:
+                post = form.save(commit=False)
+                post.save()
+                return redirect('post_detail', post_id=post.id, category_id=category.id)
+            except:
+                error_message = 'Something went wrong.'
+                (request, 'categories_and_posts/post_form.html', {'form': form, 'type_of_request': 'Edit', 'error_message': error_message})
     else:
         form = PostForm(instance=post)
     return render(request, 'categories_and_posts/post_form.html', {'form': form, 'type_of_request': 'Edit'})
@@ -88,7 +100,11 @@ def delete_post(request, category_id, post_id):
     category = get_category(category_id)
     post = get_post(post_id)
     if request.method == "POST":
-        post.delete()
-        return redirect('category_detail', category_id=category.id)
+        try:
+            post.delete()
+            return redirect('category_detail', category_id=category.id)
+        except:
+            error_message = 'Something went wrong.'
+            return render(request, 'categories_and_posts/post_delete.html', {'name': post.title, 'error_message': error_message})
     if request.method == "GET":
         return render(request, 'categories_and_posts/post_delete.html', {'name': post.title})
