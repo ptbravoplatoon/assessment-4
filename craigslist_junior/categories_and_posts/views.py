@@ -60,14 +60,15 @@ def post_detail(request, category_id, post_id):
     return render(request, 'categories_and_posts/post_detail.html', {'category': category, 'post': post})
 
 def new_post(request, category_id):
+    category = get_category(category_id)
     if request.method == "POST":
-        form = postForm(request.POST)
+        form = PostForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
             return redirect('post_detail', category_id=post.category.id, post_id=post.id)
     else:
-        form = postForm()
+        form = PostForm(initial={'category': category.id})
     return render(request, 'categories_and_posts/post_form.html', {'form': form, 'type_of_request': 'New'})
 
 def edit_post(request, category_id, post_id):
@@ -88,6 +89,6 @@ def delete_post(request, category_id, post_id):
     post = get_post(post_id)
     if request.method == "POST":
         post.delete()
-        return redirect(reverse('post_list', category_id=category.id))
+        return redirect('category_detail', category_id=category.id)
     if request.method == "GET":
         return render(request, 'categories_and_posts/post_delete.html', {'name': post.title})

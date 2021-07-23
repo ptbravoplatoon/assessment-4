@@ -14,6 +14,10 @@
       {% endfor %}
     </ul>
     <br>
+    <br>
+    <a href="{% url 'new_post' category_id=category.id %}">Add a new post</a>
+    <br>
+    <br>
     <a href="{% url 'edit_category' category_id=category.id %}"> Edit Category</a>
     <br>
     <br>
