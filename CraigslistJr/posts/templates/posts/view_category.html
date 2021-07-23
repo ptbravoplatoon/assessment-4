@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Craigslist Junior</title>
+</head>
+<body>
+  <h1>{{ category.name }}</h1>
+  <p><a href="{% url 'categories' %}">Go back to view categories</a></p>
+  <p><a href="{% url 'edit_category' category.id %}">Edit Category</a>, <a href="{% url 'delete_category' category.id %}">Delete Category</a></p>
+  <br>
+  <p><a href="{% url 'new_post' category.id %}">Create a new post</a></p>
+  <h3>Posts:</h3>
+  {% for post in posts %}
+  <h5><a href="{% url 'view_post' category.id post.id %}">{{ post.title }}</a></h5>
+  {% endfor %}
+</body>
+</html>
