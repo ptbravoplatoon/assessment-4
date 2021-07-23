@@ -1,4 +1,7 @@
 <body>
   <h1>All Categories</h1>
-  {{ categories }}
+  {% for category in categories %}
+  <a href="{% url 'category_detail' category_id=category.id %}"><p>{{ category.name }}</p></a>
+  {% endfor %}
+  <a href="{% url 'category_new' %}"><p>Create new category</p></a>
 </body>

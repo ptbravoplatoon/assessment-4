@@ -1,5 +1,11 @@
-<h2>{{ category.name }}</h2>
-<p>{{ category.description }}</p>
+<h2>Category Name - {{ category.name }}</h2>
+<p>Category Description - {{ category.description }}</p>
+<h3>Posts: </h3>
+<a href="{% url 'post_new' category_id=category.id %}"><p>Create a new post</p></a>
 {% for post in posts %}
-<p>{{ post.title }} - {{ post.text }}</p>
+<a href="{% url 'post_detail' category_id=category.id post_id=post.id %}"><p>{{ post.title }} - {{ post.text }}</p></a>
 {% endfor %}
+
+<a href="{% url 'category_edit' category_id=category.id %}"><p>Edit this category</p></a>
+<a href="{% url 'category_delete' category_id=category.id %}"><p>Delete this category</p></a>
+<a href="{% url 'category_list' %}"><p>Return to category list</p></a>

@@ -54,7 +54,7 @@ def category_delete(request, category_id):
 
 class PostCreateView(CreateView):
     model = Post
-    template_name = "cljr_site/post_new.html"
+    template_name = "cljr_site/post_form.html"
     fields = ["title", "text"]
 
     def form_valid(self, form):
@@ -88,7 +88,7 @@ class PostDetailView(DetailView):
 
 class PostUpdateView(UpdateView):
     model = Post
-    template_name = "cljr_site/post_new.html"
+    template_name = "cljr_site/post_form.html"
     fields = ["title", "text"]
     pk_url_kwarg = "post_id"
 
