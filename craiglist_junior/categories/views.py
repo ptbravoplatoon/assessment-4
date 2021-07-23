@@ -35,7 +35,7 @@ def category_edit(request, category_id):
             return redirect('cat_detail', category_id=category.id)
     else:
         form = CategoryForm(instance=category)
-    return render(request, 'categories/category_form.html', {'form': form, 'type_of_request':'Edit'})
+    return render(request, 'categories/category_form.html', {'form': form, 'type_of_request':'Edit', 'category': category})
 
 def category_delete(request, category_id):
     category = get_category(category_id)
@@ -81,7 +81,7 @@ def post_edit(request, category_id, post_id):
     else:
         form = PostForm(instance=post)
         category = get_category(category_id)
-    return render(request, 'categories/post_form.html', {'form': form, 'type_of_request': 'Edit', 'category': category})
+    return render(request, 'categories/post_form.html', {'form': form, 'type_of_request': 'Edit', 'category': category, 'post': post})
 
 def post_delete(request, category_id, post_id):
     post = get_post(post_id)

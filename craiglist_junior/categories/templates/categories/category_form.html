@@ -15,5 +15,10 @@
   <button type="submit">Save</button>
   </form>
 
+  {% if type_of_request == 'Edit' %}
+    <br>
+    <a href="{% url 'cat_delete' category_id=category.id %}"> Delete category</a>
+  {% endif %}
+
 </body>
 </html>
