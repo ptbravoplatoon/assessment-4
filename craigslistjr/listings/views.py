@@ -52,12 +52,11 @@ def new_post_listing_for_category(request,category_id):
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            # newPic = Post(photo = request.FILES['photo'])
-            # newPic.save()
             form.save()
             return redirect("category_detail",category_id=category_id)
     if request.method == "GET":
-        form = PostForm()
+        form = PostForm(initial={'category': category_id})
+        #form.fields['category'].widget.attrs['readonly'] = True 
         return render(request, "listings/new_post_listing_for_category.html", {"form": form})
     
 def post_detail_for_category(request,category_id,post_id):
