@@ -1,6 +1,7 @@
 from .models import Category
+from .forms import CategoryForm
 from django.http.response import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 # Category methods
 def get_categories(request):
@@ -13,7 +14,15 @@ def get_category(request, category_id):
 
 
 def new_category(request):
-    return HttpResponse("cat_new")
+    if request.method == "POST":
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("cat_all")
+    elif request.method == "GET":
+        form = CategoryForm()
+
+    return render(request, "craigslist_jr/category_form.html", {"form": form})
 
 
 def edit_category(request, category_id):
