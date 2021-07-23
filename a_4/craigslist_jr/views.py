@@ -1,9 +1,11 @@
+from .models import Category
 from django.http.response import HttpResponse
 from django.shortcuts import render
 
 # Category methods
 def get_categories(request):
-    return HttpResponse("cat_all")
+    categories = Category.objects.all()
+    return render(request, "craigslist_jr/categories.html", {"categories": categories})
 
 
 def get_category(request, category_id):
