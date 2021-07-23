@@ -19,10 +19,10 @@ Here are a list of the routes you will need to build:
 - `/categories/new`: A page with a form to create a new category
 - `/categories/:category_id`: A page to view the detail of a specific category and a list of all of its associated posts
 - `/categories/:category_id/edit`: A page with a form to update a specific category, with current values filled in already. Also include the ability to delete the specific category here. 
-- `/categories/:category_id/delete`: A page with a form to update a specific category, with current values filled in already. Also include the ability to delete the specific category here. 
+- `/categories/:category_id/delete`: A page with a form to delete a specific category.
 - `/categories/:category_id/posts/new`: A page with a form to create a new post, under the current category by default.
 - `/categories/:category_id/posts/:post_id`: A page to view the detail of a specific post. Also include the ability go back to the parent category detail page (`/categories/:category_id/`)
 - `/categories/:category_id/posts/:post_id/edit`: A page with a form to update a specific post, with current values filled in already. Also include the ability to delete the specific post here.
-- `/categories/:category_id/posts/:post_id/delete`: A page with a form to update a specific post, with current values filled in already. Also include the ability to delete the specific post here.
+- `/categories/:category_id/posts/:post_id/delete`: A page with a form to delete a specific post.
 
 NOTE: For creating, updating, or deleting data... all actions should automatically redirect to another appropriate page, if successful, or display an error message if unsuccessful.
