@@ -1,0 +1,23 @@
+{% extends 'categories_and_posts/base.html' %}
+
+{% block content %}
+  <div>
+    <h1>{{ category.title }}</h1>
+    <h3> Description: {{ category.description|linebreaksbr }}</h3>
+    <br>
+    <h4> All Posts for {{ category.title }} </h4>
+    <ul>
+      {% for post in posts %}
+        <div>
+          <li><a href="{% url 'post_detail' category_id=category.id post_id=post.id %}">{{ post.title }}</a></li>
+        </div>
+      {% endfor %}
+    </ul>
+    <br>
+    <a href="{% url 'edit_category' category_id=category.id %}"> Edit Category</a>
+    <br>
+    <br>
+    <a href="{% url 'delete_category' category_id=category.id %}"> Delete Category</a>
+  </div>
+
+  {% endblock %}
