@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic.edit import UpdateView, DeleteView
 
 from .models import *
 from .forms import *
@@ -61,5 +62,48 @@ class PostCreateView(CreateView):
         temp_form.category = Category.objects.get(pk=self.kwargs["category_id"])
         return super().form_valid(temp_form)
 
+    def get_success_url(self):
+        return reverse_lazy("category_detail", kwargs = {"category_id": self.kwargs["category_id"]})
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context["type_of_request"] = "New"
+        return context
+
+class PostDetailView(DetailView):
+    model = Post
+    template_name = "cljr_site/post_detail.html"
+    pk_url_kwarg = "post_id"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        category_id = self.kwargs["category_id"]
+        category = Category.objects.get(id=category_id)
+        context["category"] = category
+        return context
+
+    def get_object(self):
+        post_id = self.kwargs["post_id"]
+        return Post.objects.get(pk=post_id)
+
+class PostUpdateView(UpdateView):
+    model = Post
+    template_name = "cljr_site/post_new.html"
+    fields = ["title", "text"]
+    pk_url_kwarg = "post_id"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context["type_of_request"] = "Edit"
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy("post_detail", kwargs = {"category_id": self.kwargs["category_id"], "post_id": self.kwargs["post_id"]})
+
+class PostDeleteView(DeleteView):
+    model = Post
+    pk_url_kwarg = "post_id"
+
+    
     def get_success_url(self):
         return reverse_lazy("category_detail", kwargs = {"category_id": self.kwargs["category_id"]})

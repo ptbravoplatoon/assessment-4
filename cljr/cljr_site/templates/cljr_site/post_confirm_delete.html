@@ -1,0 +1,5 @@
+<h2>{{ post.title }}</h2>
+<form name="post_delete" method="POST">
+  {% csrf_token %}
+  <input type="submit" value="Delete post"/>
+</form>
