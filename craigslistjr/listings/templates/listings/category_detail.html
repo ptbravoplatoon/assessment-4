@@ -7,9 +7,18 @@
   <title>Category Detail</title>
 </head>
 <body>
-  <h3>{{category.topic}}</h3>
+  <h1>Category Detail</h1>
+  <h2>{{category.topic}}</h2>
   <p>{{category.created_at}}</p>
-  <a href="{% url 'edit_category' category_id=category.id %}">Update Category</a><span>&nbsp;&nbsp;</span>
+  <a href = "{% url 'new_post_listing_for_category' category_id=category.id %}">New Post</a>
+  <h3>All Posts for Category</h3>
+{% for post in posts %} 
+<p>{{ post.title }}</p>
+<a href = "{% url 'post_detail_for_category' category_id=category.id post_id=post.id %}">Detail</a>
+{% endfor %}
+<br/>
+<br/>
+ <a href="{% url 'edit_category' category_id=category.id %}">Update Category</a><span>&nbsp;&nbsp;</span>
   <a href="{% url 'delete_category' category_id=category.id %}">Delete Category</a>
 </body>
 </html>
