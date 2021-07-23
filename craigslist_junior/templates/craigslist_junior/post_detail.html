@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{ post.categories.name }}</h1>
+
+  
+  <h3>{{ post.title }}</h3>
+  {{ post.description }}
+
+  <h4><a href="{% url 'post_edit' post.categories.id post.id %}">Edit</a></h4>
+  <h4><a href="{% url 'post_delete' post.categories.id post.id %}">Delete</a></h4>
+  <h4><a href="{% url 'cat_detail' post.categories.id %}">Return</a></h4>
+  
+{% endblock %}

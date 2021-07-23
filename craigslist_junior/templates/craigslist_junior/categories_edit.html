@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h1>Category Edit</h1>
+
+  <form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Edit">
+  </form>
+  
+  <h4><a href="{% url 'cat_delete' cat.id %}">Delete</a></h4>
+{% endblock %}

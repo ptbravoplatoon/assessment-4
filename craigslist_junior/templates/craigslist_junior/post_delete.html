@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h1>Post Delete</h1>
+
+  <p>Category: {{ post.categories.name }}</p>
+  <p>Title: {{ post.title }}</p>
+  <p>Description: {{ post.description }}</p>
+  
+  <form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Delete">
+  </form>
+
+  <h4><a href="{% url 'cat_detail' post.categories.id %}">Return</a></h4>
+  
+  
+{% endblock %}

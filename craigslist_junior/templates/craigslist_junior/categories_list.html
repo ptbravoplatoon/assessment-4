@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h1>{{ title }}</h1>
+
+  {% for cat in categories %}
+  <h3>{{ cat.name }} : <a href="{% url 'cat_detail' cat.id %}">View Posts</a></h3>
+  <h5><a href="{% url 'cat_edit' cat.id %}">Edit</a> <a href="{% url 'cat_delete' cat.id %}">Delete</a></h5>
+
+  {% endfor %}
+
+  <h3><a href="{% url 'cat_create' %}">Create New Category</a></h3>
+
+{% endblock %}

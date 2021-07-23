@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h1>Post Create</h1>
+
+  <form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Edit">
+  </form>
+
+  <h4><a href="{% url 'post_delete' post.categories.id post.id %}">Delete</a></h4>
+
+  
+{% endblock %}
