@@ -1,0 +1,5 @@
+<h2>{{ category.name }}</h2>
+<p>{{ category.description }}</p>
+{% for post in posts %}
+<p>{{ post.title }} - {{ post.text }}</p>
+{% endfor %}
