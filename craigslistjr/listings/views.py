@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from .models import *
 from .forms import CategoryForm, PostForm
+import os
 
 def list_categories(request):
     categories = Category.objects.all()
@@ -37,7 +38,7 @@ def edit_category(request,category_id):
             return redirect("category_detail",category_id=category_id)
     if request.method == "GET":
         form = CategoryForm(instance=obj)
-        return render(request, 'listings/edit_category.html', {'form': form, 'type_of_request': 'Edit'})
+        return render(request, 'listings/edit_category.html', {'form': form, 'type_of_request': 'Edit', "category_id": category_id})
 
 def delete_category(request,category_id):
     obj = Category.objects.get(pk=category_id)
@@ -45,12 +46,14 @@ def delete_category(request,category_id):
         obj.delete()
         return redirect("list_categories")
     if request.method == "GET":
-        return render(request, "listings/delete_category.html", {"name": obj.topic})
+        return render(request, "listings/delete_category.html", {"name": obj.topic, "category_id": category_id})
 
 def new_post_listing_for_category(request,category_id):
     if request.method == "POST":
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
+            # newPic = Post(photo = request.FILES['photo'])
+            # newPic.save()
             form.save()
             return redirect("category_detail",category_id=category_id)
     if request.method == "GET":
@@ -68,13 +71,13 @@ def post_detail_for_category(request,category_id,post_id):
 def edit_post_for_category(request,category_id,post_id):
     obj = Post.objects.get(pk=post_id)
     if request.method == "POST":
-        form = PostForm(request.POST, instance=obj)
+        form = PostForm(request.POST or None, request.FILES or None, instance=obj)
         if form.is_valid():
             form.save()
             return redirect("post_detail_for_category",category_id=category_id,post_id=post_id)
     if request.method == "GET":
         form = PostForm(instance=obj)
-        return render(request, "listings/edit_post_for_category.html", {"form": form, "category_id": category_id,'type_of_request': 'Edit'})
+        return render(request, "listings/edit_post_for_category.html", {"form": form, "category_id": category_id, "post_id": post_id, 'type_of_request': 'Edit'})
 
 def delete_post_for_category(request,category_id,post_id):
     obj = Post.objects.get(pk=post_id)
@@ -82,6 +85,6 @@ def delete_post_for_category(request,category_id,post_id):
         obj.delete()
         return redirect("category_detail", category_id=category_id)
     if request.method == "GET":
-        return render(request, "listings/delete_post_for_category.html", {"name": obj.title})
+        return render(request, "listings/delete_post_for_category.html", {"name": obj.title, "category_id": category_id})
 
 

@@ -12,7 +12,7 @@
   <form method="POST">
     {% csrf_token %}
     {{ form }}
-    <input type="submit" value="Delete Post">
+    <input type="submit" value="Delete Post"><span>&nbsp;</span><input type="button" value="Cancel" onclick="location.href='{% url 'category_detail' category_id=category_id %}'"/>
   </form>
 </body>
 </html>

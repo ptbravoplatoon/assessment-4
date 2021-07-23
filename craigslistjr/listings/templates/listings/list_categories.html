@@ -9,10 +9,12 @@
 <body>
   <h1>List all Categories</h1>
   <a href = "{% url 'new_category' %}">New Category</a>
+  <ul>
    {% for category in categories %}
-   <h3>{{ category.topic }}</h3>
+   <li><h3>{{ category.topic }}</h3>
    <p>{{ category.created_at }}</p>
-   <a href = "{% url 'category_detail' category.id %}">Detail</a>
+   <a href = "{% url 'category_detail' category.id %}">Detail</a></li>
    {% endfor %}
+   </ul>
 </body>
 </html>
