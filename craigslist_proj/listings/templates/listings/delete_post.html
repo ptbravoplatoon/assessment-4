@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delete Post</title>
+</head>
+<body>
+  <h5><a href="{% url 'list_categories' %}">All Categories ||| </a>
+    <a href="{% url 'new_category' %}">Add a Category ||| </a>
+    <a href="{% url 'category_detail' category_id=category.id %}">{{post.category.name}}</a></h5>
+  {{invalid_form_message}}
+
+  <h1>Delete {{post.title}}</h1>
+  <h6>Post Number: {{post.pk}}</h6>
+  <h3>Are you sure that you want to delete the {{post.title}} post forever?</h3>
+  <h4><a href="{% url 'edit_post' category_id=category.id post_id=post.id%}">Edit the post instead</a></h4>
+  <form method="POST">
+    {% csrf_token %}
+    <input type="submit" value = "Yes, Delete Forever">
+  </form>
+</body>
+</html>

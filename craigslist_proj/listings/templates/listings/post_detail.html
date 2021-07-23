@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{post.title}}</title>
+</head>
+<body>
+  <h5><a href="{% url 'list_categories' %}">All Categories ||| </a>
+    <a href="{% url 'new_category' %}">Add a Category ||| </a>
+    <a href="{% url 'category_detail' category_id=category.id %}">{{post.category.name}} Category</a></h5>
+  <h1>{{post.title}}</h1>
+  <p>Posted by: {{post.posted_by}}</p>
+  <p>{{post.description}}</p>
+  <p>${{post.price}}</p>
+  <h4><a href="{% url 'edit_post' category_id=category.id post_id=post.id %}">Edit this Post</a></h4>
+  <h4><a href="{% url 'delete_post' category_id=category.id post_id=post.id%}">Delete this Post</a></h4>
+  <h2><a href="{% url 'category_detail' category_id=category.id %}">Return to {{category.name}} Category Page</a></h2>
+</body>
+
+</html>
