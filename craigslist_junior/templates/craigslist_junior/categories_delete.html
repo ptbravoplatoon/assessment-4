@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h1>Category Delete</h1>
+
+  <p>Category: {{ cat.name }}</p>
+  <p>Created On: {{ cat.createdOn }}</p>
+  
+  <form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Delete">
+  </form>
+
+  <h4><a href="{% url 'cat_list' %}">Return</a></h4>
+  
+{% endblock %}
