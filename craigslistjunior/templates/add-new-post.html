@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block body %}
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+<div class="categories-lists">
+<h1>Add new post for "{{category.name}}"</h1>
+<form action="" method="post" class="bootsform">
+    <p class="form-group">
+        <label>
+            Title
+        </label>
+        <br/>
+        <input type="text" name="title" class="form-control" />
+    </p>
+    <p class="form-group">
+        <label>
+            Short Description
+        </label> 
+
+        <textarea name="description" class="form-control"></textarea>
+    </p>
+    <p class="form-group">
+        <label>
+            Content
+        </label>
+
+        <textarea name="content" rows="10" cols="25" class="form-control"></textarea>
+    </p>
+    <p class="form-group">
+        <label>
+            Upload Image
+        </label>
+        <br/>
+        <input type="file" name="image" class="form-control"/>
+    </p>
+    <p class="form-group">
+        <input type="submit" value="Add Post" class="btn btn-success"/>
+        {% csrf_token%}
+		<a href="/categories">Go Back</a>
+    </p>
+
+</form>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

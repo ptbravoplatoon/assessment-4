@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block body %}
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+<div class="categories-lists m40">
+<h2>{{category.name}}</h2>
+<p>{{category.description}}</p>
+<a href="/categories">Go Back</a>
+<hr/>
+<h2>Related Posts</h2>
+		{% for post in posts%}
+				<div class="blog-item">
+                      <h3><a href="/categories/{{category.id}}/posts/{{post.id}}">{{post.title}}</a></h3>
+                     <article><p>{{post.short_description}}</p></article>
+					 <div class="text-right">
+                     <a class="btn btn-primary" href="/categories/{{category.id}}/posts/{{post.id}}">Read More</a> 
+					 <a href="/categories/{{category.id}}/posts/{{post.id}}/edit">Edit Post</a>
+					 </div>
+                 </div>
+				 {% endfor %}
+
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

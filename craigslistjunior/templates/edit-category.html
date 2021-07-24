@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block body %}
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+<div class="categories-lists">
+<h1>Edit Category
+</h1>
+<form action="" method="post" class="bootsform">
+    <p class="form-group">
+        <label>
+            Category Name
+        </label>
+        <input type="text" name="name" class="form-control" value="{{category.name}}"/>
+    </p>
+    <p class="form-group">
+        <label>
+            Description
+        </label>
+        <textarea name="description" class="form-control" >{{category.description}}</textarea>
+    </p>
+    <p class="form-group">
+        <input type="submit" value="Update Category" class="btn btn-success"/>
+        <a href="/categories/{{category.id}}/delete" class="btn  btn-delete">Delete Category</a>
+		<a href="/categories">Go Back</a>
+        {% csrf_token%}
+    </p>
+
+</form>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

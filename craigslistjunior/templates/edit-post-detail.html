@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block body %}
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+<div class="categories-lists">
+<h1>Update post for {{category.name}}</h1>
+<form action="" method="post" class="bootsform">
+    <p class="form-group">
+        <label>
+            Title
+        </label>
+        
+        <input type="text" name="title" class="form-control" value="{{post.title}}"/>
+    </p>
+    <p class="form-group">
+        <label>
+            Short Description
+        </label>
+
+        <textarea name="description" class="form-control">{{post.short_description}}</textarea>
+    </p>
+    <p class="form-group">
+        <label>
+            Content
+        </label> 
+
+        <textarea name="content" class="form-control">{{post.content}}</textarea>
+    </p>
+    <p class="form-group">
+        <input type="submit" value="Update  Post" class="btn btn-success"/>
+        <a href="/categories/{{category.id}}/posts/{{post.id}}/delete" class="btn  btn-delete">Delete Post</a>
+		<a href="/categories/{{category.id}}">Go Back</a>
+        {% csrf_token%}
+    </p>
+
+</form>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}
