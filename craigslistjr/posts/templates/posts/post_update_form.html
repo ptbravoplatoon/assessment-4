@@ -8,6 +8,8 @@
         <br>
         <h1>Update Post</h1>
         <br>
+            <a class="btn btn-sm" style="background-color: red;" href="{% url 'post_delete' category_id=post.category.id post_id=post.id %}">Delete Post</a>
+        <br><br>
         <form method="post">
             {% csrf_token %}
             {{ form|crispy }}
