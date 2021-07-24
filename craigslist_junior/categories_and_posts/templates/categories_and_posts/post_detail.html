@@ -1,0 +1,20 @@
+{% extends 'categories_and_posts/base.html' %}
+
+{% block content %}
+
+  <div>
+    <h2>{{post.title}}</h2>
+    <p>Category: <a href="{% url 'category_detail' category_id=category.id %}"> {{category.title}} </a> </p>
+    <p>Description: {{post.description}}</p>
+    <p>Price: {{post.price}}</p>
+    <p>List Date: {{post.list_date}}</p>
+  
+    <br>
+    <br>
+    <a href="{% url 'edit_post' category_id=category.id post_id=post.id %}"> Edit Post</a>
+    <br>
+    <br>
+    <a href="{% url 'delete_post' category_id=category.id post_id=post.id %}"> Delete Post</a>
+  </div>
+
+{% endblock %}

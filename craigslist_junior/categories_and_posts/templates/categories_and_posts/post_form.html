@@ -1,0 +1,13 @@
+{% extends 'categories_and_posts/base.html' %}
+
+{% block content %}
+
+  {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+  <h2>{{ type_of_request }} Post </h2>
+  <form method="POST">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Post</button>
+  </form>
+
+{% endblock %}

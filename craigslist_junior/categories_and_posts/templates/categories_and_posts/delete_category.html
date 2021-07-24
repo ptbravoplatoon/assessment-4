@@ -1,0 +1,11 @@
+{% extends 'categories_and_posts/base.html' %}
+
+{% block content %}
+
+  <h2>Are you sure you want to delete {{ category.title }}?</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Delete Category">
+  </form>
+
+{% endblock %}
