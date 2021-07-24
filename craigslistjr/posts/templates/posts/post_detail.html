@@ -1,0 +1,29 @@
+{% extends 'posts/base.html' %}
+
+{% block content %}
+    <br><br>
+    <div style="width: 50%; margin: auto;">
+        <a href="{% url 'category_detail' category_id=post.category.id %}">Back to Category Details</a>
+    </div>
+    <br>
+    <div class="card" style="width: 50%; margin: auto;">
+        <div class="card-header bg-light">
+          <ul class="nav nav-pills justify-content-between card-header-pills">
+            <li class="nav-item">
+              <a class="nav-link active btn-sm" style="background-color: green;" href="{% url 'post_update' category_id=post.category.id post_id=post.id %}">Edit Post</a>
+            </li>
+            <li class="nav-item active btn-sm">
+              <a class="nav-link active" style="background-color: red;" href="{% url 'post_delete' category_id=post.category.id post_id=post.id %}">Delete Post</a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title text-center">{{ post.title }}</h4><br>
+          <p class="card-text">
+              <b>Content: </b>{{ post.content }}<br><br>
+              <b>Created: </b>{{ post.date_created }}<br>
+              <b>Last Edited: </b>{{ post.last_edit }}
+            </p>
+        </div>
+      </div>
+{% endblock %}

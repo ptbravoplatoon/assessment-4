@@ -1,0 +1,46 @@
+{% extends 'posts/base.html' %}
+
+{% block content %}
+    <br><br>
+    <div style="width: 50%; margin: auto;">
+        <a href="{% url 'category_list' %}">Back to Category List</a>
+    </div>
+    <br>
+    <div class="card" style="width: 50%; margin: auto;">
+        <div class="card-header bg-light">
+          <ul class="nav nav-pills justify-content-between card-header-pills">
+            <li class="nav-item">
+              <a class="nav-link active btn-sm" style="background-color: green;" href="{% url 'category_update' category_id=category.id %}">Edit Category</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active btn-sm" style="background-color: red;" href="{% url 'category_delete' category_id=category.id %}">Delete Category</a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title text-center">{{ category.name }}</h3>
+          <p class="card-text text-center">
+              {{ category.description}}
+            </p>
+        </div>
+        <br>
+        <div class="card-body">
+            <h5 class="card-title text-center">Posts</h5>
+            <a href="{% url 'post_create' category_id=category.id%}">Create Post</a>
+            <br><br>
+            <div class="list-group list-group-flush">
+                {% for p in post_list %}
+                    <a href="{% url 'post_detail' category_id=category.id post_id=p.id %}" class="list-group-item list-group-item-action" aria-current="true">
+                        {{ p.title }}
+                    </a>
+                {% empty %}
+                    <span>No posts. Be the first to create a post!</span>
+                {% endfor %}
+                </div>
+          </div>
+        <div class="card-footer text-muted text-center">
+            Created: {{ category.date_created }}
+          </div>
+      </div>
+
+{% endblock %}
