@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h3><a href="{% url 'categories:all_categories' %}">Back to category list</a></h3>
+  <h1>{{item.title}}</h1>
+  <p>{{item.description}}</p>
+  <hr/>
+  <h3><a href="{% url 'categories:new_post' item.id%}">New Post</a></h3>
+  <hr/>
+  {% for post in posts %}
+  <hr/>
+  <a href="{% url 'categories:view_post' item.id post.id %}">{{ post.title }}</a>
+  {% endfor %}
+  <hr/>
+  <h3><a href="{% url 'categories:edit_category' item.id %}">Edit Category</a></h3>
+  <h3><a href="{% url 'categories:delete_category' item.id %}">Delete Category</a></h3>
+</body>
+</html>
