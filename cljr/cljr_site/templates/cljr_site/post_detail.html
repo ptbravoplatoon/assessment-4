@@ -1,0 +1,5 @@
+<a href="{% url 'category_detail' category_id=category.id %}"><h1>{{ category.name }}</h1></a>
+<h2>{{ post.title }}</h2>
+<p>{{ post.text }}</p>
+<a href="{% url 'post_edit' category_id=category.id post_id=post.id %}"><p>Edit this post</p></a>
+<a href="{% url 'post_delete' category_id=category.id post_id=post.id %}"><p>Delete this post</p></a>
