@@ -9,8 +9,6 @@
         <br>
         <h1>Update Category</h1>
         <br>
-            <a class="btn btn-sm" style="background-color: red;" href="{% url 'category_delete' category_id=category.id %}">Delete Category</a>
-        <br><br>
         <form method="post">
             {% csrf_token %}
             {{ form|crispy }}
