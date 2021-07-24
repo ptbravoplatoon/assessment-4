@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Post</title>
+</head>
+<body>
+  <h5><a href="{% url 'list_categories' %}">All Categories ||| </a>
+    <a href="{% url 'new_category' %}">Add a Category ||| </a>
+    <a href="{% url 'category_detail' category_id=category.id %}">{{category.name}}</a></h5>
+  <h1>Create a New Post in the <i>{{category}}</i> Category</h1>
+  <form method ="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Submit">
+  </form>
+  <h2><a href="{% url 'category_detail' category_id=category.id %}">Return to {{category.name}} Category</a></h2>
+</body>
+</html>

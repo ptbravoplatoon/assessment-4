@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Category</title>
+</head>
+<body>
+  <h5><a href="{% url 'list_categories' %}">All Categories ||| </a>
+    <a href="{% url 'new_category' %}">Add a Category ||| </a>
+    <a href="{% url 'category_detail' category_id=catobj.pk %}">{{catobj.name}}</a></h5>
+  {{invalid_form_message}}
+  <h1>Edit {{catobj.name}}</h1>
+  <h6>Category Number: {{catobj.pk}}</h6>
+  <form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value = "Save Changes">
+  </form>
+  <h4><a href="{% url 'delete_category' category_id=catobj.pk %}">Delete the {{catobj.name}} Category </a></h4>
+</body>
+</html>

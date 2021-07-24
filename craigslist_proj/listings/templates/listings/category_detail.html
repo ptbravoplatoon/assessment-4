@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{category.name}}</title>
+</head>
+<body>
+  <h5><a href="{% url 'list_categories' %}">All Categories ||| </a>
+    <a href="{% url 'new_category' %}">Add a Category</a>
+  </h5>
+  <h1>{{category.name}}</h1>
+  <p>{{category.description}}</p>
+  <h4><a href="{% url 'edit_category' category_id=category.id %}">Edit the {{category.name}} Category</a></h4>
+  <h4><a href="{% url 'delete_category' category_id=category.id %}">Delete the {{category.name}} Category</a></h4>
+  <h2>{{category.name}} Posts:</h2>
+  <h4><a href="{% url 'new_post' category_id=category.id %}"> Create a New Post in the <i>{{category.name}}</i> Category</a></h4>
+  {% if cat_posts %}
+    <ul>
+      {% for post in cat_posts %}
+      <li>
+        ${{post.price}} | <a href="{% url 'post_detail' category_id=category.id post_id=post.pk %}">{{post.title}}</a>
+      </li>
+      {% endfor %}
+    
+    {% else %}
+    <h6>No Posts to Display</h6>
+    {% endif %}
+    </ul>
+
+
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Categories</title>
+</head>
+<body>
+  <h5><a href="{% url 'list_categories' %}">All Categories ||| </a>
+    <a href="{% url 'new_category' %}">Add a Category  </a></h5>
+  <h1>All Categories</h1>
+  <h3><a href='{% url "new_category" %}'><i>Create A New Category</i></a></h3>
+  {% for cat in categories %}
+  <h3><a href='{% url "category_detail" category_id=cat.id %}'>{{cat.name}}:</a></h3>
+  <p>{{cat.description}}</p>
+  <br>
+  {% endfor %}
+
+
+  
+</body>
+</html>
