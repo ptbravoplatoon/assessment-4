@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Category Detail</title>
+</head>
+<body>
+  <h1>Category Detail</h1>
+  <h2>{{category.topic}}</h2>
+  <p>{{category.created_at}}</p>
+  <a href = "{% url 'new_post_listing_for_category' category_id=category.id %}">New Post</a>
+  <h3>All Posts for Category</h3>
+  <ul>
+{% for post in posts %} 
+<li>{{ post.title }}<span>&nbsp;&nbsp;</span><a href = "{% url 'post_detail_for_category' category_id=category.id post_id=post.id %}">Detail</a></li>
+{% endfor %}
+</ul>
+<br/>
+<br/>
+ <a href="{% url 'edit_category' category_id=category.id %}">Update Category</a><span>&nbsp;&nbsp;</span>
+  <a href="{% url 'delete_category' category_id=category.id %}">Delete Category</a>
+  <br/>
+  <br/>
+  <a href="{% url 'list_categories' %}">Back to All Categories</a>
+</body>
+</html>
