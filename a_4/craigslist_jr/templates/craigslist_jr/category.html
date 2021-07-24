@@ -1,0 +1,20 @@
+{% extends "craigslist_jr/base.html" %}
+
+{% block content %}
+
+<a href="{% url 'cat_all' %}">Back to Categories</a>
+<div>
+    <h1 style="display: inline-block">Category: {{category.name}}</h1>
+    <a href="{% url 'cat_edit' category_id=category.id %}">Update</a>
+    <a href="{% url 'cat_delete' category_id=category.id %}">Delete</a>
+</div>
+<a href="{% url 'post_new' category_id=category.id %}">New Post</a>
+<ul>
+    {% for post in category.posts.all %}
+    <li>
+        <a href="{% url 'post_detail' category_id=category.id post_id=post.id %}">{{post.item_name}}</a>
+        <p>{{post.item_desc}}</p>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock content %}

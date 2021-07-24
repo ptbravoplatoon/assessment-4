@@ -1,0 +1,9 @@
+{% extends "craigslist_jr/base.html" %}
+
+{% block content %}
+<a href="{% url 'cat_detail' category_id=post.category.id %}">Back to {{post.category.name}}</a>
+<h1>Post: {{post.item_name}}</h1>
+<p>{{post.item_desc}}</p>
+<a href="{% url 'post_edit' category_id=post.category.id post_id=post.id %}">Update</a>
+<a href="{% url 'post_delete' category_id=post.category.id post_id=post.id %}">Delete</a>
+{% endblock %}

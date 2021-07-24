@@ -1,0 +1,14 @@
+{% extends "craigslist_jr/base.html" %}
+
+{% block content %}
+<a href="{% url 'cat_detail' category_id=category.id %}">Back to {{ category.name }}</a>
+<h1>Post</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">{{ operation }}</button>
+    {% if post and operation == 'Update' %}
+    <a href="{% url 'post_delete' category_id=post.category.id post_id=post.id%}">Delete</a>
+    {% endif %}
+</form>
+{% endblock content %}

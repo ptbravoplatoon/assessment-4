@@ -6,10 +6,10 @@ from .models import Category, Post
 class CategoryForm(ModelForm):
     class Meta:
         model = Category
-        exclude = ["id"]
+        fields = ["name"]
 
 
 class PostForm(ModelForm):
     class Meta:
         model = Post
-        exclude = ["id"]
+        fields = ["item_name", "item_desc"]
