@@ -1,0 +1,11 @@
+{% extends "craigslist_jr/base.html" %}
+
+{% block content %}
+<a href="{% url 'cat_new' %}">New Category</a>
+<h1>Categories</h1>
+<ul>
+    {% for cat in categories %}
+    <li><a href="{% url 'cat_detail' category_id=cat.id %}">{{ cat.name }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock content %}
