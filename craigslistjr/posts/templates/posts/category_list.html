@@ -1,0 +1,24 @@
+{% extends 'posts/base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <br>
+        <div style="text-align: center;">
+            <h1>Category List</h1>
+            <a href="{% url 'category_create' %}">Create New Category</a>
+        </div>
+        <br>
+            <div class="list-group list-group-flush" style="width: 50%; margin: auto;">
+                {% for c in categories %}
+                    <a href="{% url 'category_detail' category_id=c.id %}" class="list-group-item list-group-item-action" aria-current="true">
+                        {{ c.name }}
+                    </a>
+                {% empty %}
+                    <span>No categories yet. Be the first to create one!</span>
+                {% endfor %}
+                </div>
+        <br>
+    </div>
+
+{% endblock %}

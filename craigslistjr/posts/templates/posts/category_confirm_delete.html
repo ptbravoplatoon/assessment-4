@@ -1,0 +1,15 @@
+{% extends 'posts/base.html' %}
+
+{% block content %}
+    <br><br>
+    <form method="post">
+    {% csrf_token %}
+    <div class="card text-center" style="width: 50%; margin: auto;">
+        <div class="card-body">
+        <p class="card-text">Are you sure you want to delete "{{ object.name }}"?</p>
+        <a href="{% url 'category_detail' object.id %}" class="btn btn-sm btn-secondary">Cancel</a>
+        <input type="submit" class="btn btn-sm btn-danger" value="Delete">
+        </div>
+    </div>
+    </form>
+{% endblock %}
