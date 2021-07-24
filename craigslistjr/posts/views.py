@@ -44,20 +44,6 @@ class CategoryDeleteView(DeleteView):
     success_url = reverse_lazy('category_list')
     pk_url_kwarg = 'category_id'
 
-# class PostListView(ListView):
-#     model = Post
-#     ordering = ['date_created']
-#     context_object_name = 'posts'
-
-#     def get_context_data(self, *args, **kwargs):
-#         context = super().get_context_data(*args, **kwargs)
-#         context['category_id'] = self.kwargs['category_id']
-#         return context
-
-#     def get_queryset(self):
-#         category_id = self.kwargs['category_id']
-#         return Post.objects.filter(category__id=category_id)
-
 class PostCreateView(CreateView):
     model = Post
     fields = ['title', 'content']
