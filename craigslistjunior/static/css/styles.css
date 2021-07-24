@@ -1,0 +1,56 @@
+body{
+	
+}
+.categories-lists {
+    max-width: 768px;
+    padding: 0px;
+    background: #f7f7f7;
+    margin: 5px auto;
+    border-radius: 2px;
+	box-shadow: 0 0 30px 0 rgb(0 0 0 / 16%);
+}
+.categories-lists ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.categories-lists li {
+    font-size: 17px;
+    border-bottom: 1px solid #ddd;
+    padding: 13px;
+	position:relative;
+}
+
+.categories-lists h1 {
+    padding: 25px 9px;
+    font-size: 29px;
+    border-bottom: 1px solid #ddd;
+}
+
+.categories-lists a.btn.btn-primary.btn-small {
+    margin-left: 15px;
+}
+.categories-lists a.add-new {
+    font-size: 27px;
+}
+
+.categories-lists .controls {
+    position: absolute;
+    right: 8px;
+    top: 2px;
+}
+
+.categories-lists .controls a {
+    margin: 5px 4px;
+    display: inline-flex;
+	text-decoration:none;
+}
+.bootsform{padding: 40px;}
+.bootsform a.btn.btn-delete {
+    background: #f00;
+    color: #fff;
+}
+.categories-lists.m40 {
+    padding: 10px 20px;
+}

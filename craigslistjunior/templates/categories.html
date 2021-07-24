@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block body %}
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+<div class="categories-lists">
+<h1>Categories 
+<a href="/category/new" class="btn btn-primary btn-small">Add New Category</a>
+</h1>
+
+<ul >
+    {% for category in categories%}
+    <li><a href="/categories/{{category.id}}">{{category.name}}</a>
+	<div class="controls">
+    <a href="/categories/{{category.id}}/edit" title="Edit Category" class="edit"><img src ="{% static 'images/edit.svg' %}"/></a>
+    <a href="/categories/{{category.id}}/posts/new" title="Add New Post" class="add-new">+</a>
+	</div>
+    </li>
+    {% endfor %}
+</ul>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}
