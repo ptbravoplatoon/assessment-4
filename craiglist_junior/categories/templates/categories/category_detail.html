@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Craig's List Junior</title>
+</head>
+<body>
+  
+  <div>
+    <h2>{{ category.name }}</h2>
+    <a href="{% url 'cat_edit' category_id=category.id %}"> Edit category</a>
+    <br>
+    <a href="{% url 'cat_delete' category_id=category.id %}"> Delete category</a>
+    <br>
+  </div>  
+  <hr/>
+  <div>
+    <h3>All Posts</h3>
+    <a href="{% url 'post_new' category_id=category.id %}">Add a new post</a>
+    <ul>
+      {% for post in posts %}
+
+        <li><a href="{% url 'post_detail' category_id=category.id post_id=post.id %}">{{ post.title }}</a></li>
+      
+        {% endfor %}
+    </ul>
+  </div>
+
+</body>
+</html>
